@@ -16,7 +16,7 @@ version = '1.0-SNAPSHOT'
 
 application {
     // TODO: your main class here
-    mainClass = "fr.imta.mde.XtextExample"
+    mainClass = "mde.XCoreExample"
 }
 
 jar {
@@ -51,8 +51,6 @@ xtext {
     sourceSets {
         main {
             srcDir 'model'
-            // Move the generated Xcore output to the src-gen directory
-            // Also need to be set in the xcore file in the @GenModel annotation !
             output {
                 dir(xtext.languages.xcore.generator.outlet, 'src-gen')
             }

@@ -1,13 +1,18 @@
+// NE PAS MODIFIER CETTE PARTIE
+
 // préambule important pour la sérialisation des modèles
 @Ecore(nsPrefix="book", nsURI="http://imta.fr/mde/book")
 
 // configuration du générateur de code
 @GenModel(
 	importerID="org.eclipse.emf.importer.ecore",
-	modelDirectory="base-xcore/src-gen/main/java", // remplace "base-xcore" par le nom du dossier contenant le projet
+	modelDirectory=".", 
     complianceLevel="8.0"
 )
-package fr.imta.mde.book
+
+// MODIFIER EN DESSOUS DE CETTE LIGNE
+
+package book
 
 class Book {
     String title
