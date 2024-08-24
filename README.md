@@ -1,14 +1,15 @@
-# Génération de code à partir d'un fichier xcore
+# Génération de CSP à partir d'un fichier xcore
 
 Ce petit projet montre comment configurer gradle pour générer les sources java correspondantes à un fichier xcore.
+Et comment lier ce model a un CSP.
 
-## Récupération de ce dépôt
+Il y a aussi des contraintes OCL modelisees' en composant les sub-CSP comme navCSP (NavigationOrAttributeCall)
 
-`git clone https://git.kher.nl/cours/base-xtext.git`
+Based on`git clone https://git.kher.nl/cours/base-xtext.git`
 
-## Dépendances
-
-- JDK >= 11, installation [ici](https://adoptium.net/)
+## Interesting Files
+- model/zoo.xcore
+- src/main/java/mde/App.java
 
 ## Compilation & exécution
 
@@ -19,10 +20,3 @@ Ce petit projet montre comment configurer gradle pour générer les sources java
 # run
 ./gradlew run
 ```
-
-## Réutilisation pour un autre projet
-
-1) copier la structure des dossiers `/model`, `/src/main/java/<package>`, `build.gradle`
-2) créer un fichier xcore pour le métamodèle et reprendre les deux annotation `@Ecore` et `@GenModel` de `book.xcore`
-3) mettre votre code dans `/src/main/java/<package>`
-4) ajouter les dépendances spécifiques à votre projet dans la section `dependencies` du `build.gradle`
