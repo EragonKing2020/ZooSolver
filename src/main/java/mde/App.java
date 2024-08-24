@@ -54,13 +54,13 @@ public class App {
         return m.intVarArray(maxCard, lb,ub);
     }
 
-    static void initLinkVar(IntVar[] linkvar, int[] data, int n){
+    static void initLinkVar(IntVar[] linkvar, int[] data, int n){ //-1 is no data
         initLinkVar(linkvar, data, data, n);
     }
 
     static void initLinkVar(IntVar[] linkvar, int[] lb, int[] ub, int n){
         for(int i=0;i<n;i++){
-            try {
+            if(lb[i]!=-1 & ub[i]!=-1) try {
                 linkvar[i].updateBounds(lb[i], ub[i], null);
             } catch (Exception e){}
         }
