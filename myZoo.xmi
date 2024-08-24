@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<zoo:Park xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:zoo="http://imta.fr/mde/zoo" name="myZoo">
+  <animals name="Lea" cage="//@cages.0"/>
+  <animals name="Leo" cage="//@cages.0"/>
+  <cages name="Lions" animals="//@animals.0 //@animals.1"/>
+</zoo:Park>

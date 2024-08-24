@@ -1,0 +1,44 @@
+// NE PAS MODIFIER CETTE PARTIE
+
+// préambule important pour la sérialisation des modèles
+@Ecore(nsPrefix="zoo", nsURI="http://imta.fr/mde/zoo")
+
+// configuration du générateur de code
+@GenModel(
+	importerID="org.eclipse.emf.importer.ecore",
+	modelDirectory=".", 
+    complianceLevel="8.0"
+)
+
+// MODIFIER EN DESSOUS DE CETTE LIGNE
+
+package zoo
+
+class Park {
+    String name
+    contains Animal[] animals
+    contains Cage[] cages
+    contains Carer[] carers
+    contains Species specs
+}
+
+class Animal {
+    String name
+    refers Species spec
+    refers Cage cage opposite animals
+}
+
+class Cage {
+    String name
+    refers Animal[] animals opposite cage
+}
+
+class Species {
+    String name
+}
+
+class Carer {
+    String name
+    refers Species[] skills
+    refers Cage[] cages
+}
