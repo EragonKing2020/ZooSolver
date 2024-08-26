@@ -82,16 +82,51 @@ public class App {
 
     }
 
-    static IntVar[] navCSP(Model m, IntVar[] source, List<IntVar[]> sources, int s, int ss, int lb, int ub){
+    static IntVar[] navCSP(Model m, IntVar[] source, List<IntVar[]> sources, int s, int ss, int lb, int ub, IntVar dummy){
         int sss = s*ss;
         IntVar[] out = m.intVarArray(sss,lb,ub);
+        IntVar[] dummies;
+        IntVar[] table; //TODO: flatten sources !!!! AND ADD DUMMY VARS! at the end !
         for(int i=0;i<sss;i++){
-            //pointer
-            //element
+            IntVar pointer;//TODO: pointer arithm = source[i]*ss+i
+            m.element(out[i], table, pointer,0);
         }
-
         return out;
     }
+
+    static IntVar sizeOCC(Model m, IntVar[] occVar, int maxCard, int dummy){
+        IntVar out;
+        //TODO out = maxCard - occVar[dummy];
+        return out;
+    }
+
+    static IntVar sizeLINK(Model m, IntVar[] linkVar, int maxCard, int dummy){
+        IntVar out;
+        IntVar darc;
+        m.count(dummy, linkVar, darc);
+        //TODO out = maxCard - darc;
+        return out;
+    }
+
+    //OCL Constraint: cage.animals.species.asSet.size() =< 1
+    static void asSetLessThanN(Model m, IntVar[] source, int s, int n, int lb, int ub, int dummy){ //the complicated one
+
+        IntVar[] speciesLINK;
+        IntVar[] speciesOCC;
+        IntVar[] asSetOCC; //domain 0..1 except for asSetOCC[dummy]
+        //TODO source nav speciesLINK
+        //TODO speciesLINK gcc speciesOCC
+        //TODO speciesOCC includes asSetOCC
+        //TODO asSetOCC size
+        //TODO size less than n
+    }
+
+    //OCL Constraint: cage.animals.size() =< cage.capacity
+    static void capacity(Model m, IntVar[] source, int n){
+        //TODO size
+        //TODO arithm
+    }
+
 
 
 
