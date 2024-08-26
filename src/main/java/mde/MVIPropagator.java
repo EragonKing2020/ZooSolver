@@ -21,6 +21,7 @@ public class MVIPropagator extends Propagator<IntVar>{
     public ESat isEntailed() {
         if(y.isInstantiatedTo(0) && x.getLB()>0) return ESat.FALSE;
         if(x.isInstantiatedTo(0)) return ESat.TRUE;
+        if(y.getLB()>0) return ESat.TRUE;
         return ESat.UNDEFINED;
     }
 
