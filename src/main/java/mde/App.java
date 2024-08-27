@@ -68,11 +68,11 @@ public class App {
         }
     }
 
-    static void oppositeCSP(Model m, List<IntVar[]> a, List<IntVar[]> b){
-        for(int i=0;i<a.size();i++){
-            for(int j=0;j<b.size();j++){
-                IntVar[] aa = a.get(i);
-                IntVar[] bb = b.get(j);
+    static void oppositeCSP(Model m, IntVar[][] a, IntVar[][] b){
+        for(int i=0;i<a.length;i++){
+            for(int j=0;j<b.length;j++){
+                IntVar[] aa = a[i];
+                IntVar[] bb = b[j];
                 IntVar aaid = m.intVar(i); //I think consts use singletons, so doing it messy
                 IntVar bbid = m.intVar(j);
                 IntVar aapos = m.intVar(0,magic); //here's the real mess, these are kinda dangling
@@ -112,9 +112,11 @@ public class App {
     }
 
     static IntVar sizeLINK(Model m, IntVar[] linkVar, int maxCard, int dummy){
-        IntVar darc = m.count("darcCounter",dummy, linkVar);
+        IntVar darc = m.count("",dummy, linkVar);
         return darc.mul(-1).add(maxCard).intVar();
     }
+
+
 
     //OCL Constraint: cage.animals.species.asSet.size() =< 1
     static void asSetLessThanN(Model m, IntVar[] source, int s, int n, int lb, int ub, int dummy){ //the complicated one
