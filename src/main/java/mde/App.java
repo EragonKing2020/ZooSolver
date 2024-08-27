@@ -87,7 +87,7 @@ public class App {
     static IntVar[] navCSP(Model m, IntVar[] source, List<IntVar[]> sources, int s, int ss, int lb, int ub, IntVar dummy){
         int sss = s*ss;
         IntVar[] out = m.intVarArray(sss,lb,ub);
-        IntVar[] dummies; //copy dummy ss times
+        IntVar[] dummies = new IntVar[ss]; for(int i=0;i<ss;i++) dummies[i] = dummy;//copy dummy ss times
         IntVar[] table; //TODO: flatten sources !!!! AND ADD DUMMY VARS! at the end !
         for(int i=0;i<sss;i++){
             IntVar pointer;//TODO: pointer arithm = source[i]*ss+i
@@ -95,6 +95,11 @@ public class App {
         }
         return out;
     }
+
+    // static IntVar size(Model m, IntVar[] var, int maxCard, int dummy){
+    //     if (var.length == maxCard) return sizeLINK(m, var, maxCard, dummy); //this would work, if the number-of-targets and maxCard can't be equal.
+    //     return sizeOCC(m, var, maxCard, dummy);
+    // }
 
     static IntVar sizeOCC(Model m, IntVar[] occVar, int maxCard, int dummy){
         IntVar darc = occVar[dummy];
