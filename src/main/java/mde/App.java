@@ -118,6 +118,13 @@ public class App {
 
 
 
+
+    //UML Constraints
+    static void uml2CSP(Model m, List<Cage> cages, List<Animal> aniamls, List<Species> species){
+        //TODO make Vars
+        //TODO apply Opposite
+    }
+
     //OCL Constraint: cage.animals.species.asSet.size() =< 1
     static void asSetLessThanN(Model m, IntVar[] source, int s, int n, int lb, int ub, int dummy){ //the complicated one
 
