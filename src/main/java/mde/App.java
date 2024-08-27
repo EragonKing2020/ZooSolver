@@ -84,14 +84,19 @@ public class App {
 
     }
 
-    static IntVar[] navCSP(Model m, IntVar[] source, List<IntVar[]> sources, int s, int ss, int lb, int ub, IntVar dummy){
+    static IntVar[] navCSP(Model m, IntVar[] source, IntVar[][] sources, int s, int ss, int lb, int ub, IntVar dummy){
         int sss = s*ss;
         IntVar[] out = m.intVarArray(sss,lb,ub);
         IntVar[] dummies = new IntVar[ss]; for(int i=0;i<ss;i++) dummies[i] = dummy;//copy dummy ss times
-        IntVar[] table; //TODO: flatten sources !!!! AND ADD DUMMY VARS! at the end !
-        for(int i=0;i<sss;i++){
-            IntVar pointer;//TODO: pointer arithm = source[i]*ss+i
-            m.element(out[i], table, pointer,0);
+        IntVar[] table = ArrayUtils.concat(ArrayUtils.flatten(sources),dummies); //flatten sources, dummies at the end (ub--)
+        // IntVar[] table = ArrayUtils.concat(dummies, ArrayUtils.flatten(sources)); //flatten sources, dummies at the end (lb++)
+        
+        // for(int i=0;i<sss;i++)
+        //     m.element(out[i], table, pointer,0);
+        int k=0;
+        for(int i=0; i<s;i++) for(int j=0;j<ss;j++){
+            IntVar pointer = source[i].mul(ss).add(j).intVar(); // = pointer arithm
+            m.element(out[k++], table, pointer,0);
         }
         return out;
     }
