@@ -16,6 +16,8 @@ import org.chocosolver.util.tools.ArrayUtils;
 import zoo.*; //This is the model we're trying to solve the problems for, it's designed in xcore
 
 public class App {
+    static int magic = 100;
+
     //Ecore Stuff
     static ZooFactory z = ZooFactory.eINSTANCE;
 
@@ -73,8 +75,8 @@ public class App {
                 IntVar[] bb = b.get(j);
                 IntVar aaid = m.intVar(i); //I think consts use singletons, so doing it messy
                 IntVar bbid = m.intVar(j);
-                IntVar aapos = m.intVar(0,100); //here's the real mess, these are kinda dangling
-                IntVar bbpos = m.intVar(0,100); //but it doesn't matter, the copies will all have the same values and they don't really play much of a role in propagation
+                IntVar aapos = m.intVar(0,magic); //here's the real mess, these are kinda dangling
+                IntVar bbpos = m.intVar(0,magic); //but it doesn't matter, the copies will all have the same values and they don't really play much of a role in propagation
                 m.ifOnlyIf(m.element(bbid,aa,bbpos,0),m.element(aaid,bb,aapos,0));
             }
 
@@ -85,7 +87,7 @@ public class App {
     static IntVar[] navCSP(Model m, IntVar[] source, List<IntVar[]> sources, int s, int ss, int lb, int ub, IntVar dummy){
         int sss = s*ss;
         IntVar[] out = m.intVarArray(sss,lb,ub);
-        IntVar[] dummies;
+        IntVar[] dummies; //copy dummy ss times
         IntVar[] table; //TODO: flatten sources !!!! AND ADD DUMMY VARS! at the end !
         for(int i=0;i<sss;i++){
             IntVar pointer;//TODO: pointer arithm = source[i]*ss+i
@@ -95,17 +97,13 @@ public class App {
     }
 
     static IntVar sizeOCC(Model m, IntVar[] occVar, int maxCard, int dummy){
-        IntVar out;
-        //TODO out = maxCard - occVar[dummy];
-        return out;
+        IntVar darc = occVar[dummy];
+        return darc.mul(-1).add(maxCard).intVar();
     }
 
     static IntVar sizeLINK(Model m, IntVar[] linkVar, int maxCard, int dummy){
-        IntVar out;
-        IntVar darc;
-        m.count(dummy, linkVar, darc);
-        //TODO out = maxCard - darc;
-        return out;
+        IntVar darc = m.count("darcCounter",dummy, linkVar);
+        return darc.mul(-1).add(maxCard).intVar();
     }
 
     //OCL Constraint: cage.animals.species.asSet.size() =< 1
