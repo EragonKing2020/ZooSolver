@@ -150,28 +150,7 @@ public class App {
 
     //ECore <-> Choco: OCL Environement
     public static void main(String[] args) {
-        //Make a Zoo
-        Park p = initPark("myZoo");
-        ResourceSetImpl rs = new ResourceSetImpl();
-        rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-        rs.getPackageRegistry().put(ZooPackage.eNS_URI,ZooPackage.eINSTANCE);
-        Resource res = rs.createResource(URI.createFileURI("myZoo.xmi"));
-        res.getContents().add(p);
-
-        Cage lions = makeCage("Lions",p);
-        Animal lea = makeAnimal("Lea",p);
-        Animal leo = makeAnimal("Leo",p);
-        putInCage(lea, lions);
-        putInCage(leo, lions);
-
-        // Cage capys = makeCage("Capybaras");
-        // Animal clem = makeAnimal("Clem");
-        try{
-            res.save(null);
-        } catch (Throwable _e) {
-            throw Exceptions.sneakyThrow(_e);
-        }
-
+        //Make a Zoo: see ZooBuilder
         //Load a Zoo
         res = rs.getResource(URI.createFileURI("myZoo.xmi"), true);
         Park p2 = (Park) res.getContents().get(0);
