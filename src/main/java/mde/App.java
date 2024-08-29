@@ -23,7 +23,7 @@ public class App {
     static java.util.Hashtable<Cage,IntVar[]> cage2animal = new Hashtable<>();
     static java.util.Hashtable<Animal,IntVar[]> animal2cage = new Hashtable<>();
     static java.util.Hashtable<Animal,IntVar[]> animal2species = new Hashtable<>(); //all consts
-    static Model m;
+    static Model m = new Model();
     static int cA,cC,cS; //count of Animals, Cages, Species
 
 
@@ -138,15 +138,19 @@ public class App {
 
         // make Vars
         EReference ec0 = cages.get(0).eClass().getEReferences().getFirst();
+        System.out.println(ec0.getLowerBound());
+        System.out.println(ec0.getUpperBound());
         List<IntVar[]> cage2animal_LinkVars = new ArrayList<>();
         for(var c : cages){
-            IntVar[] linkVar = makeLinkVar(m, ec0.getUpperBound(), ec0.getLowerBound(), animals.size())
+            IntVar[] linkVar = makeLinkVar(m, ec0.getUpperBound(), ec0.getLowerBound(), animals.size());
             cage2animal.put(c, linkVar);
             cage2animal_LinkVars.add(linkVar);
-            eRef2LinkVar.put(c.eClass().getEReferences().getFirst(),linkVar)
+            eRef2LinkVar.put(c.eClass().getEReferences().getFirst(),linkVar);
         }
         
         EReference ec = animals.get(0).eClass().getEReferences().getLast();
+        System.out.println(ec.getLowerBound());
+        System.out.println(ec.getUpperBound());
         List<IntVar[]> animal2cage_LinkVars = new ArrayList<>();
         for(var a : animals){
             IntVar[] linkVar = makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), cages.size()); 
@@ -156,7 +160,9 @@ public class App {
         
         //apply Opposite, you look between all pairs (because only one can be opposite you can eliminate options as you go)
         if(ec0.getEOpposite() == ec) //here True
-            oppositeCSP(m, (IntVar[][])cage2animal_LinkVars.toArray(), (IntVar[][])animal2cage_LinkVars.toArray());
+            oppositeCSP(m,
+                cage2animal_LinkVars.toArray(new IntVar[cage2animal_LinkVars.size()][]), 
+                animal2cage_LinkVars.toArray(new IntVar[animal2cage_LinkVars.size()][]));
 
 
         ec = animals.get(0).eClass().getEReferences().getFirst();
@@ -173,7 +179,7 @@ public class App {
     //OCL Constraint 1: cage.animals.size() =< cage.capacity
     static void ocl_capacity(List<Cage> c){
         for(var cc : c){
-            // capacity(cage2animal.get(cc), cc.getCapacity());
+            capacity(cage2animal.get(cc), cc.getCapacity());
         }
     }
 
