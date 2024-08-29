@@ -31,7 +31,7 @@ class Animal {
 class Cage {
     String name
     int capacity
-    refers Animal[] animals opposite cage
+    refers Animal[0..10] animals opposite cage
 }
 
 class Species {
