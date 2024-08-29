@@ -14,6 +14,7 @@ import java.util.stream.IntStream;
 
 import org.chocosolver.solver.*;
 import org.chocosolver.solver.constraints.Constraint;
+import org.chocosolver.solver.search.strategy.Search;
 import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.util.tools.ArrayUtils;
 
@@ -22,6 +23,7 @@ import mde.MVIPropagator;
 
 public class App {
     static int magic = 100;
+    static List<IntVar[]> cage2animal_LinkVars; 
     static java.util.Hashtable<EReference,IntVar[]> eRef2LinkVar = new Hashtable<>();
     static java.util.Hashtable<Cage,IntVar[]> cage2animal = new Hashtable<>();
     static java.util.Hashtable<Animal,IntVar[]> animal2cage = new Hashtable<>();
@@ -32,31 +34,31 @@ public class App {
 
 
     //Ecore Stuff
-    static ZooFactory z = ZooFactory.eINSTANCE;
+    // static ZooFactory z = ZooFactory.eINSTANCE;
 
-    static Park initPark(String name){
-        Park out = z.createPark();
-        out.setName(name);
-        return out;
-    }
+    // static Park initPark(String name){
+    //     Park out = z.createPark();
+    //     out.setName(name);
+    //     return out;
+    // }
 
-    static Cage makeCage(String name, Park park){
-        Cage out = z.createCage();
-        out.setName(name);
-        park.getCages().add(out);
-        return out;
-    }
+    // static Cage makeCage(String name, Park park){
+    //     Cage out = z.createCage();
+    //     out.setName(name);
+    //     park.getCages().add(out);
+    //     return out;
+    // }
 
-    static Animal makeAnimal(String name, Park park){
-        Animal out = z.createAnimal();
-        out.setName(name);
-        park.getAnimals().add(out);
-        return out;
-    }
+    // static Animal makeAnimal(String name, Park park){
+    //     Animal out = z.createAnimal();
+    //     out.setName(name);
+    //     park.getAnimals().add(out);
+    //     return out;
+    // }
 
-    static void putInCage(Animal animal, Cage cage){
-        cage.getAnimals().add(animal);
-    }
+    // static void putInCage(Animal animal, Cage cage){
+    //     cage.getAnimals().add(animal);
+    // }
 
 
     //Choco
@@ -144,7 +146,7 @@ public class App {
         EReference ec0 = cages.get(0).eClass().getEReferences().getFirst();
         System.out.println(ec0.getLowerBound());
         System.out.println(ec0.getUpperBound());
-        List<IntVar[]> cage2animal_LinkVars = new ArrayList<>();
+        cage2animal_LinkVars = new ArrayList<>();
         for(var c : cages){
             IntVar[] linkVar = makeLinkVar(m, ec0.getUpperBound(), ec0.getLowerBound(), animals.size());
             cage2animal.put(c, linkVar);
@@ -171,10 +173,14 @@ public class App {
 
         ec = animals.get(0).eClass().getEReferences().getFirst();
         List<IntVar[]> animal2species_LinkVars = new ArrayList<>();
+        System.out.println(ec.getLowerBound());
+        System.out.println(ec.getUpperBound());
+        System.out.println(species.size());
         for(var a : animals){
-            animal2species_LinkVars.add(makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), species.size()));
             IntVar[] out = makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), species.size());
+            animal2species_LinkVars.add(out);
             //init data
+            m.arithm(out[0],"=",species.indexOf( a.getSpec())).post();
             animal2species.put(a,out); //link to a
         }
         animals2species_table = animal2species_LinkVars.toArray(new IntVar[animal2species_LinkVars.size()][]);
@@ -209,22 +215,28 @@ public class App {
     // //OCL Constraint 2.a: LinkVar.asSet.size() =< n
     static void asSetLessThanN(Model m, IntVar[] source, int s, int n, int lb, int ub, int dummy){ //the complicated one
         //speciesLINK gcc speciesOCC
-        IntVar[] speciesOCC = m.intVarArray(cS+1, 0, magic);
+        IntVar[] speciesOCC = m.intVarArray("specOCC",cS+1, 0, magic);
         int[] gccIDs = IntStream.range(0, cS+1).toArray();
         m.globalCardinality(source, gccIDs, speciesOCC, true).post();;
         
         //speciesOCC includes asSetOCC
-        IntVar[] asSetOCC = m.intVarArray(cS, 0,magic); //domain 0..1 except for asSetOCC[dummy]
-        for(int i=0;i<ub-1;i++) { 
-            try {
-                asSetOCC[i].updateBounds(0, 1, null);
-            } catch(Exception e){}
-            Constraint includes = new Constraint("includes", new MVIPropagator(speciesOCC[i],asSetOCC[i]));
-            includes.post();
+        IntVar[] asSetOCC = m.intVarArray("asSetOCC",cS+1, 0,magic); //domain 0..1 except for asSetOCC[dummy]
+        m.sum(asSetOCC,"=",cS).post();
+        for(int i=0;i<cS;i++) {
+            m.member(asSetOCC[i], 0,1).post();
+            // try {
+            //     asSetOCC[i].updateBounds(0, 1, null);
+            // } catch(Exception e){}
+            Constraint l2r = new Constraint("l2r", new MVIPropagator(speciesOCC[i],asSetOCC[i]));
+            Constraint r2l = new Constraint("r2l", new MVIPropagator(asSetOCC[i],speciesOCC[i]));
+            l2r.post();
+            r2l.post();
         }
+        Constraint dm = new Constraint("r2l", new MVIPropagator(asSetOCC[cS],speciesOCC[cS]));
+        dm.post();
 
         //asSetOCC size
-        IntVar size = sizeOCC(m, asSetOCC, ub-1, dummy);
+        IntVar size = sizeOCC(m, asSetOCC, cS, cS);
 
         //size less than n
         m.arithm(size, "<=", n).post();
@@ -237,7 +249,11 @@ public class App {
 
     //ECore <-> Choco: OCL Environement
     public static void main(String[] args) {
-        //Make a Zoo: see ZooBuilder
+        //Make a Zoo with ZooBuilder
+        ZooBuilder zooBuilder = new ZooBuilder();
+        // zooBuilder.makezoofile0();
+        zooBuilder.makezoofile1(7); //n=5 -> 3:39 then n=6 in less time (like 26s)?!?!
+
         //Load a Zoo
         ResourceSetImpl rs = new ResourceSetImpl();
         rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
@@ -265,12 +281,14 @@ public class App {
         // Here we make our Orders of Objects, List<> provides indexOf
         List<Animal> csp_animals = p2.getAnimals(); 
         List<Cage> csp_cages = p2.getCages();
-        // List<Species> csp_species = p2.getSpecs();
-        List<Species> csp_species = new ArrayList<>();
+        List<Species> csp_species = p2.getSpecs();
+        // List<Species> csp_species = new ArrayList<>();
 
         uml2CSP(m, csp_cages, csp_animals, csp_species);
         ocl_capacity(csp_cages);
-        // ocl_species(csp_cages);
+        ocl_species(csp_cages);
+
+        System.out.println(m.toString());
 
         // Lets make some variables for these Objects
         // IntVar[] cage2lions = m.intVarArray("cage2lions",3, 0, csp_animals.size());
@@ -300,10 +318,20 @@ public class App {
 
 
 
-
-
+        // IntVar[][] problemVars = cage2animal_LinkVars.toArray(new IntVar[cage2animal_LinkVars.size()][]);
+        // m.getSolver().setSearch(Search.intVarSearch(ArrayUtils.flatten(problemVars)));
         Solution solution = m.getSolver().findSolution();
         if(solution != null){
+            for(var c:csp_cages){
+                int maxCard = c.eClass().getEReferences().getFirst().getUpperBound();
+                int[] values = new int[maxCard];
+                IntVar[] linkVar = cage2animal.get(c);
+                for(int i=0;i<maxCard;i++){
+                    values[i] = linkVar[i].getValue();
+                    System.out.println(values[i]);
+                    if(values[i]!=cA) zooBuilder.putInCage(csp_animals.get(values[i]), c);
+                }
+            }
             // if(loucage.getValue() < csp_cages.size())
             //     lou.setCage(csp_cages.get(loucage.getValue()));
             System.out.println(solution.toString());
@@ -311,8 +339,9 @@ public class App {
 
         System.out.println("Zoo Config");
         for (Cage c : p2.getCages()){
+            System.out.println(c.getName());
             for(Animal a : c.getAnimals()){
-                System.out.println(a.getName());
+                System.out.println(a.getName()+" : "+csp_species.get(animal2species.get(a)[0].getValue()).getName());
             }
         }
     }

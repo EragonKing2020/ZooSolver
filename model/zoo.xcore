@@ -24,8 +24,8 @@ class Park {
 
 class Animal {
     String name
-    refers Species spec
-    refers Cage cage opposite animals
+    refers Species[1..1] spec
+    refers Cage[1..1] cage opposite animals
 }
 
 class Cage {
