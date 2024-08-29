@@ -10,12 +10,15 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.stream.IntStream;
 
 import org.chocosolver.solver.*;
+import org.chocosolver.solver.constraints.Constraint;
 import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.util.tools.ArrayUtils;
 
 import zoo.*; //This is the model we're trying to solve the problems for, it's designed in xcore
+import mde.MVIPropagator;
 
 public class App {
     static int magic = 100;
@@ -23,6 +26,7 @@ public class App {
     static java.util.Hashtable<Cage,IntVar[]> cage2animal = new Hashtable<>();
     static java.util.Hashtable<Animal,IntVar[]> animal2cage = new Hashtable<>();
     static java.util.Hashtable<Animal,IntVar[]> animal2species = new Hashtable<>(); //all consts
+    static IntVar[][] animals2species_table;
     static Model m = new Model();
     static int cA,cC,cS; //count of Animals, Cages, Species
 
@@ -104,7 +108,7 @@ public class App {
         int k=0;
         for(int i=0; i<s;i++) for(int j=0;j<ss;j++){
             IntVar pointer = source[i].mul(ss).add(j).intVar(); // = pointer arithm
-            m.element(out[k++], table, pointer,0);
+            m.element(out[k++], table, pointer,0).post();
         }
         return out;
     }
@@ -166,13 +170,14 @@ public class App {
 
 
         ec = animals.get(0).eClass().getEReferences().getFirst();
-        // List<IntVar[]> animal2species_LinkVars = new ArrayList<>();
+        List<IntVar[]> animal2species_LinkVars = new ArrayList<>();
         for(var a : animals){
-            // animal2species_LinkVars.add(makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), species.size()));
+            animal2species_LinkVars.add(makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), species.size()));
             IntVar[] out = makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), species.size());
             //init data
             animal2species.put(a,out); //link to a
         }
+        animals2species_table = animal2species_LinkVars.toArray(new IntVar[animal2species_LinkVars.size()][]);
         //return everything nice and sorted
     }
 
@@ -192,22 +197,39 @@ public class App {
     }
 
     // //OCL Constraint 2: cage.animals.species.asSet.size() =< 1
-    // static void ocl_species(List<Cage> cages){
-
-    // }
+    static void ocl_species(List<Cage> cages){
+        IntVar dS = m.intVar(cS);
+        for(var c:cages){
+            IntVar[] local_animal2species = navCSP(m, cage2animal.get(c), animals2species_table, 10, 1, 0, magic, dS);
+            asSetLessThanN(m, local_animal2species, 10, 1, 0, cS, cS);
+        }
+    }
 
 
     // //OCL Constraint 2.a: LinkVar.asSet.size() =< n
-    // static void asSetLessThanN(Model m, IntVar[] source, int s, int n, int lb, int ub, int dummy){ //the complicated one
+    static void asSetLessThanN(Model m, IntVar[] source, int s, int n, int lb, int ub, int dummy){ //the complicated one
+        //speciesLINK gcc speciesOCC
+        IntVar[] speciesOCC = m.intVarArray(cS+1, 0, magic);
+        int[] gccIDs = IntStream.range(0, cS+1).toArray();
+        m.globalCardinality(source, gccIDs, speciesOCC, true).post();;
+        
+        //speciesOCC includes asSetOCC
+        IntVar[] asSetOCC = m.intVarArray(cS, 0,magic); //domain 0..1 except for asSetOCC[dummy]
+        for(int i=0;i<ub-1;i++) { 
+            try {
+                asSetOCC[i].updateBounds(0, 1, null);
+            } catch(Exception e){}
+            Constraint includes = new Constraint("includes", new MVIPropagator(speciesOCC[i],asSetOCC[i]));
+            includes.post();
+        }
 
-    //     IntVar[] speciesLINK;
-    //     IntVar[] speciesOCC;
-    //     IntVar[] asSetOCC; //domain 0..1 except for asSetOCC[dummy]
-    //     //TODO speciesLINK gcc speciesOCC
-    //     //TODO speciesOCC includes asSetOCC
-    //     //TODO asSetOCC size
-    //     //TODO size less than n
-    // }
+        //asSetOCC size
+        IntVar size = sizeOCC(m, asSetOCC, ub-1, dummy);
+
+        //size less than n
+        m.arithm(size, "<=", n).post();
+        
+    }
 
 
 
