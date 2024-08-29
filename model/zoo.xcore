@@ -19,7 +19,7 @@ class Park {
     contains Animal[] animals
     contains Cage[] cages
     contains Carer[] carers
-    contains Species specs
+    contains Species[] specs
 }
 
 class Animal {
@@ -30,6 +30,7 @@ class Animal {
 
 class Cage {
     String name
+    int capacity
     refers Animal[] animals opposite cage
 }
 
