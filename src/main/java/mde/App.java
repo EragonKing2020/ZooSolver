@@ -5,10 +5,11 @@ import org.eclipse.emf.ecore.*;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.xtext.xbase.lib.Exceptions;
+//import org.eclipse.xtext.xbase.lib.Exceptions;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.stream.IntStream;
 
@@ -24,12 +25,12 @@ import mde.MVIPropagator;
 public class App {
     static int magic = 100;
     static List<IntVar[]> cage2animal_LinkVars; 
+    static List<IntVar[]> animal2cage_LinkVars; 
     static java.util.Hashtable<EReference,IntVar[]> eRef2LinkVar = new Hashtable<>();
     static java.util.Hashtable<Cage,IntVar[]> cage2animal = new Hashtable<>();
     static java.util.Hashtable<Animal,IntVar[]> animal2cage = new Hashtable<>();
     static java.util.Hashtable<Animal,IntVar[]> animal2species = new Hashtable<>(); //all consts
     static IntVar[][] animals2species_table;
-    static Model m = new Model();
     static int cA,cC,cS; //count of Animals, Cages, Species
 
 
@@ -65,7 +66,7 @@ public class App {
     static IntVar[] makeLinkVar(Model m, int maxCard, int minCard, int numberOfTargets){ //,int data)
         int lb=0;
         int ub=numberOfTargets;
-        if (minCard!=0) //get null pointer out of the domain
+        if (minCard!=0) //get null pointer out of the domain // Why minCard != 0 and not minCard = maxCard ?
             ub--; //null pointer is 0 or numberOfTargets, depending on where you start counting
             // lb++; //it's one XOR the other
         return m.intVarArray(maxCard, lb,ub);
@@ -92,7 +93,7 @@ public class App {
                 IntVar bbid = m.intVar(j);
                 IntVar aapos = m.intVar(0,magic); //here's the real mess, these are kinda dangling
                 IntVar bbpos = m.intVar(0,magic); //but it doesn't matter, the copies will all have the same values and they don't really play much of a role in propagation
-                m.ifOnlyIf(m.element(bbid,aa,bbpos,0),m.element(aaid,bb,aapos,0));
+                m.ifOnlyIf(m.element(bbid,aa,bbpos,0),m.element(aaid,bb,aapos,0)); // Question : Fonctionne seulement car lien unique animal -> cage ?
             }
 
         }
@@ -147,6 +148,10 @@ public class App {
         System.out.println(ec0.getLowerBound());
         System.out.println(ec0.getUpperBound());
         cage2animal_LinkVars = new ArrayList<>();
+        eRef2LinkVar = new Hashtable<>();
+        cage2animal = new Hashtable<>();
+        animal2cage = new Hashtable<>();
+        animal2species = new Hashtable<>();
         for(var c : cages){
             IntVar[] linkVar = makeLinkVar(m, ec0.getUpperBound(), ec0.getLowerBound(), animals.size());
             cage2animal.put(c, linkVar);
@@ -157,7 +162,7 @@ public class App {
         EReference ec = animals.get(0).eClass().getEReferences().getLast();
         System.out.println(ec.getLowerBound());
         System.out.println(ec.getUpperBound());
-        List<IntVar[]> animal2cage_LinkVars = new ArrayList<>();
+        animal2cage_LinkVars = new ArrayList<>();
         for(var a : animals){
             IntVar[] linkVar = makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), cages.size()); 
             animal2cage.put(a,linkVar);
@@ -188,14 +193,14 @@ public class App {
     }
 
     //OCL Constraint 1: cage.animals.size() =< cage.capacity
-    static void ocl_capacity(List<Cage> c){
+    static void ocl_capacity(Model m, List<Cage> c){
         for(var cc : c){
-            capacity(cage2animal.get(cc), cc.getCapacity());
+            capacity(m, cage2animal.get(cc), cc.getCapacity());
         }
     }
 
     //OCL Constraint 1.a: LinkVar.size() =< n
-    static void capacity(IntVar[] source, int n){
+    static void capacity(Model m, IntVar[] source, int n){
         //size
         IntVar size = sizeLINK(m, source, source.length, cA);
         //arithm
@@ -203,7 +208,7 @@ public class App {
     }
 
     // //OCL Constraint 2: cage.animals.species.asSet.size() =< 1
-    static void ocl_species(List<Cage> cages){
+    static void ocl_species(Model m, List<Cage> cages){
         IntVar dS = m.intVar(cS);
         for(var c:cages){
             IntVar[] local_animal2species = navCSP(m, cage2animal.get(c), animals2species_table, 10, 1, 0, magic, dS);
@@ -244,15 +249,40 @@ public class App {
     }
 
 
+    public static Solution solvePark(Model model, Park park) {
+    	List<Animal> csp_animals = park.getAnimals(); 
+        List<Cage> csp_cages = park.getCages();
+        List<Species> csp_species = park.getSpecs();
 
-
+        uml2CSP(model, csp_cages, csp_animals, csp_species);
+        ocl_capacity(model, csp_cages);
+        ocl_species(model, csp_cages);
+        
+        Solver solver = model.getSolver();
+        solver.setSearch(Search.minDomLBSearch(getDecisionVariables()));
+        Solution solution = solver.findSolution();
+        return solution;
+    }
+    
+    public static IntVar[] getDecisionVariables() {
+    	List<IntVar[]> varsC2A = cage2animal_LinkVars;
+    	List<IntVar> res = new ArrayList<IntVar>();
+    	for (IntVar[] vars : varsC2A)
+    		for (IntVar var : vars)
+    			res.add(var);
+    	for (IntVar[] vars : animal2cage_LinkVars)
+    		for (IntVar var : vars)
+    			res.add(var);
+    	
+    	return res.toArray(IntVar[]::new);
+    }
 
     //ECore <-> Choco: OCL Environement
     public static void main(String[] args) {
         //Make a Zoo with ZooBuilder
         ZooBuilder zooBuilder = new ZooBuilder();
         // zooBuilder.makezoofile0();
-        zooBuilder.makezoofile1(7); //n=5 -> 3:39 then n=6 in less time (like 26s)?!?!
+        zooBuilder.makezoofile1(4); //n=5 -> 3:39 then n=6 in less time (like 26s)?!?!
 
         //Load a Zoo
         ResourceSetImpl rs = new ResourceSetImpl();
@@ -276,7 +306,9 @@ public class App {
 
 
         // Lets get Choco to put Lou in the Cage
-        // Model m = new Model();
+        
+        
+        Model m = new Model();
 
         // Here we make our Orders of Objects, List<> provides indexOf
         List<Animal> csp_animals = p2.getAnimals(); 
@@ -285,8 +317,8 @@ public class App {
         // List<Species> csp_species = new ArrayList<>();
 
         uml2CSP(m, csp_cages, csp_animals, csp_species);
-        ocl_capacity(csp_cages);
-        ocl_species(csp_cages);
+        ocl_capacity(m, csp_cages);
+        ocl_species(m, csp_cages);
 
         System.out.println(m.toString());
 
@@ -320,6 +352,8 @@ public class App {
 
         // IntVar[][] problemVars = cage2animal_LinkVars.toArray(new IntVar[cage2animal_LinkVars.size()][]);
         // m.getSolver().setSearch(Search.intVarSearch(ArrayUtils.flatten(problemVars)));
+
+        m.getSolver().setSearch(Search.minDomLBSearch(getDecisionVariables()));
         Solution solution = m.getSolver().findSolution();
         if(solution != null){
             for(var c:csp_cages){

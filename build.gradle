@@ -16,7 +16,7 @@ version = '1.0-SNAPSHOT'
 
 application {
     // TODO: your main class here
-    mainClass = "mde.App"
+    mainClass = "mde.Tester"
 }
 
 jar {

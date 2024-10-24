@@ -1,0 +1,230 @@
+Occurence 0, 1-1park 0 - capacity cages : [5, 5], nbAnimals by species : [1, 1]
+Zoo Config
+AnimalS0 0 : Specie 0
+AnimalS1 0 : Specie 1
+Time : 0.0545768
+Occurence 1, 2-1park 1 - capacity cages : [5, 5], nbAnimals by species : [2, 1]
+Zoo Config
+AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS1 0 : Specie 1
+Time : 0.010399
+Occurence 2, 1-2park 2 - capacity cages : [5, 5], nbAnimals by species : [1, 2]
+Zoo Config
+AnimalS0 0 : Specie 0
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+Time : 0.0462338
+Occurence 3, 3-1park 3 - capacity cages : [5, 5], nbAnimals by species : [3, 1]
+Zoo Config
+AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS1 0 : Specie 1
+Time : 0.0472519
+Occurence 4, 2-2park 4 - capacity cages : [5, 5], nbAnimals by species : [2, 2]
+Zoo Config
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.0133725
+Occurence 5, 1-3park 5 - capacity cages : [5, 5], nbAnimals by species : [1, 3]
+Zoo Config
+AnimalS1 2 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 0 : Specie 1
+AnimalS0 0 : Specie 0
+Time : 0.0168257
+Occurence 6, 4-1park 6 - capacity cages : [5, 5], nbAnimals by species : [4, 1]
+Zoo Config
+AnimalS0 0 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS1 0 : Specie 1
+Time : 0.0353622
+Occurence 7, 3-2park 7 - capacity cages : [5, 5], nbAnimals by species : [3, 2]
+Zoo Config
+AnimalS0 1 : Specie 0
+AnimalS0 0 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS1 1 : Specie 1
+AnimalS1 0 : Specie 1
+Time : 0.0154227
+Occurence 8, 2-3park 8 - capacity cages : [5, 5], nbAnimals by species : [2, 3]
+Zoo Config
+AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+Time : 0.0109758
+Occurence 9, 1-4park 9 - capacity cages : [5, 5], nbAnimals by species : [1, 4]
+Zoo Config
+AnimalS0 0 : Specie 0
+AnimalS1 1 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 0 : Specie 1
+Time : 0.0072949
+Occurence 10, 5-1park 10 - capacity cages : [5, 5], nbAnimals by species : [5, 1]
+Zoo Config
+AnimalS1 0 : Specie 1
+AnimalS0 1 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 0 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.3269623
+Occurence 11, 4-2park 11 - capacity cages : [5, 5], nbAnimals by species : [4, 2]
+Zoo Config
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.0415847
+Occurence 12, 3-3park 12 - capacity cages : [5, 5], nbAnimals by species : [3, 3]
+Zoo Config
+AnimalS0 2 : Specie 0
+AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+Time : 0.1594112
+Occurence 13, 2-4park 13 - capacity cages : [5, 5], nbAnimals by species : [2, 4]
+Zoo Config
+AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS1 1 : Specie 1
+AnimalS1 0 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+Time : 0.14671889
+Occurence 14, 1-5park 14 - capacity cages : [5, 5], nbAnimals by species : [1, 5]
+Zoo Config
+AnimalS0 0 : Specie 0
+AnimalS1 4 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 0 : Specie 1
+AnimalS1 3 : Specie 1
+Time : 0.33723432
+Occurence 15, 5-2park 15 - capacity cages : [5, 5], nbAnimals by species : [5, 2]
+Zoo Config
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 0 : Specie 0
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+Time : 0.1353092
+Occurence 16, 4-3park 16 - capacity cages : [5, 5], nbAnimals by species : [4, 3]
+Zoo Config
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS0 2 : Specie 0
+AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 3 : Specie 0
+Time : 0.0126689
+Occurence 17, 3-4park 17 - capacity cages : [5, 5], nbAnimals by species : [3, 4]
+Zoo Config
+AnimalS1 0 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS0 2 : Specie 0
+AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.0178444
+Occurence 18, 2-5park 18 - capacity cages : [5, 5], nbAnimals by species : [2, 5]
+Zoo Config
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS0 1 : Specie 0
+AnimalS0 0 : Specie 0
+Time : 0.074295
+Occurence 19, 5-3park 19 - capacity cages : [5, 5], nbAnimals by species : [5, 3]
+Zoo Config
+AnimalS1 0 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS0 3 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 0 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.0179956
+Occurence 20, 4-4park 20 - capacity cages : [5, 5], nbAnimals by species : [4, 4]
+Zoo Config
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS0 0 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 3 : Specie 0
+Time : 0.0346929
+Occurence 21, 3-5park 21 - capacity cages : [5, 5], nbAnimals by species : [3, 5]
+Zoo Config
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 0 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS0 2 : Specie 0
+AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.0834852
+Occurence 22, 5-4park 22 - capacity cages : [5, 5], nbAnimals by species : [5, 4]
+Zoo Config
+AnimalS1 0 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS0 1 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 0 : Specie 0
+Time : 0.0248181
+Occurence 23, 4-5park 23 - capacity cages : [5, 5], nbAnimals by species : [4, 5]
+Zoo Config
+AnimalS1 3 : Specie 1
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS0 3 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 0 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.1424672
+Occurence 24, 5-5park 24 - capacity cages : [5, 5], nbAnimals by species : [5, 5]
+Zoo Config
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 0 : Specie 0
+AnimalS1 4 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 3 : Specie 1
+Time : 0.5775467
+[[0.0553879, 0.0466638, 0.0172295, 0.0080499, 0.3378441],
+[0.0109956, 0.0138728, 0.0119918, 0.14713551, 0.07489929],
+[0.0477724, 0.0170508, 0.1598496, 0.0182987, 0.0838958],
+[0.035967, 0.042018, 0.0130375, 0.0350704, 0.1431003],
+[0.3273339, 0.1356216, 0.0183571, 0.0251482, 0.5779463]]
