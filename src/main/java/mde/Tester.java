@@ -25,39 +25,40 @@ public class Tester {
 
 	public static void main(String[] args) {
 		//test0();
-		//test1(getFileNameTime());
-		//test2(getFileNameTime(), 7);
-		test2(getFileNameTime(), 8);
+		//test1(getFileNameTime(), true);
+		test2(getFileNameTime(), 5, false);
+		test2(getFileNameTime(), 5, true);
+		//test2(getFileNameTime(), 8);
 	}
 	
 	public static void test0() {
-		Park park = createPark("park", 2, new int[] {2,3}, 2, new int[] {3,2});
-		solveAndWritePark(park, "results" + File.separator + "resTest.txt");
+		Park park = createPark("park", 2, new int[] {2,3}, 1, new int[] {1});
+		solveAndWritePark(park, "results" + File.separator + "resTest.txt", true);
 	}
 	
-	public static void test1(String fileName) {
+	public static void test1(String fileName, Boolean oppositeGCC) {
 		for (int i = 2; i < 5; i ++) {
 			System.out.println("Occurence " + i);
 			writeToFile(fileName, "Occurence " + i + "\r\n");
 			
 			Park parkTest = createPark("park " + i, 2, new int[] {10,2}, 2, new int[] {i,2}, fileName);
 			
-			solveAndWritePark(parkTest, fileName);
+			solveAndWritePark(parkTest, fileName, oppositeGCC);
         }
 	}
 	
-	public static void test2(String fileName, int n) {
+	public static void test2(String fileName, int n, Boolean oppositeGCC) {
 		int k = 1;
 		int l = 1;
 		float[][] times = new float[n][n];
 		for (int i = 0; i < n * n; i ++) {
-			String occurence = "Occurence " + i + ", " + k + "-" + l;
+			String occurence = "Occurence " + i + ", " + k + "-" + l + "," + ((oppositeGCC) ? "oppositeGCC"  : "oppositeELE");
 			System.out.println(occurence);
 			writeToFile(fileName, occurence);
 			
 			Park park = createPark("park " + i, 2, new int[] {n,n}, 2, new int[] {k, l}, fileName);
 			
-			times[k - 1][l - 1] = solveAndWritePark(park, fileName);
+			times[k - 1][l - 1] = solveAndWritePark(park, fileName, oppositeGCC);
 			if (k == 1) {
 				if (l == n) {
 					k = n;
@@ -81,7 +82,12 @@ public class Tester {
 		}
 		System.out.println(Arrays.deepToString(times));
 		writeToFile(fileName, Arrays.deepToString(times).replace("], ", "],\n"));
-		
+		float totalTime = (float) 0.;
+		for (float[] tt : times)
+			for (float t : tt)
+				totalTime += t;
+		System.out.println("Total time : " + totalTime);
+		writeToFile(fileName, "\nTotal time : " + totalTime);
 	}
 	
 	public static String getFileNameTime() {
@@ -93,9 +99,13 @@ public class Tester {
 	}
 	
 	public static float solveAndWritePark(Park park, String fileName) {
+		return solveAndWritePark(park, fileName, false);
+	}
+	
+	public static float solveAndWritePark(Park park, String fileName, Boolean oppositeGCC) {
 		Model model = new Model();
 		
-		Solution solution = App.solvePark(model, park);
+		Solution solution = App.solvePark(model, park, oppositeGCC);
 		
 		if(solution != null){
             for(var c:park.getCages()){

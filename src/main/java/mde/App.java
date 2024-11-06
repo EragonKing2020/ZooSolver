@@ -83,8 +83,17 @@ public class App {
             } catch (Exception e){}
         }
     }
-
-    static void oppositeCSP(Model m, IntVar[][] a, IntVar[][] b){
+    
+    static void oppositeCSP(Model m, IntVar[][] a, IntVar[][] b) {
+    	oppositeCSP(m, a, b, false);
+    }
+    
+    static void oppositeCSP(Model m, IntVar[][] a, IntVar[][] b, Boolean gcc) {
+    	if (gcc) oppositeCSPGCC(m, a, b);
+    	else oppositeCSPELE(m, a, b);
+    }
+    
+    static void oppositeCSPELE(Model m, IntVar[][] a, IntVar[][] b){
         for(int i=0;i<a.length;i++){
             for(int j=0;j<b.length;j++){
                 IntVar[] aa = a[i];
@@ -98,6 +107,28 @@ public class App {
 
         }
 
+    }
+    
+    static void oppositeCSPGCC(Model m, IntVar[][] a, IntVar[][] b){
+        int al = a.length;
+        int bl = b.length;
+        IntVar[][] aocc = m.intVarMatrix(al, bl, 0,magic);
+        int[] avals = new int[bl];
+        for(int i=0;i<bl;i++) avals[i]=(i);
+        for(int i=0;i<al;i++){
+            m.globalCardinality(a[i],avals,aocc[i],false).post();
+        }
+        
+        IntVar[][] bocc = m.intVarMatrix(bl, al, 0,magic);
+        int[] bvals = new int[al];
+        for(int i=0;i<al;i++) bvals[i]=(i);
+        for(int i=0;i<bl;i++){
+            m.globalCardinality(b[i],bvals,bocc[i],false).post();
+        }
+
+        for(int i=0;i<al;i++) for(int j=0;j<bl;j++){
+            m.ifOnlyIf(m.arithm(aocc[i][j], ">",0), m.arithm(bocc[j][i], ">",0));
+        }
     }
 
     static IntVar[] navCSP(Model m, IntVar[] source, IntVar[][] sources, int s, int ss, int lb, int ub, IntVar dummy){
@@ -131,9 +162,12 @@ public class App {
         return darc.mul(-1).add(maxCard).intVar();
     }
 
-
+    static void uml2CSP(Model m, List<Cage> cages, List<Animal> animals, List<Species> species) {
+    	uml2CSP(m, cages, animals, species, false);
+    }
+    
     //UML Constraints
-    static void uml2CSP(Model m, List<Cage> cages, List<Animal> animals, List<Species> species){
+    static void uml2CSP(Model m, List<Cage> cages, List<Animal> animals, List<Species> species, Boolean oppositeGCC){
         // java.util.Hashtable<Cage,IntVar[]> cage2animal = new Hashtable<>();
         // java.util.Hashtable<Animal,IntVar[]> animal2cage = new Hashtable<>();
         // java.util.Hashtable<Animal,IntVar[]> animal2species = new Hashtable<>(); //all consts
@@ -173,7 +207,7 @@ public class App {
         if(ec0.getEOpposite() == ec) //here True
             oppositeCSP(m,
                 cage2animal_LinkVars.toArray(new IntVar[cage2animal_LinkVars.size()][]), 
-                animal2cage_LinkVars.toArray(new IntVar[animal2cage_LinkVars.size()][]));
+                animal2cage_LinkVars.toArray(new IntVar[animal2cage_LinkVars.size()][]), oppositeGCC);
 
 
         ec = animals.get(0).eClass().getEReferences().getFirst();
@@ -247,21 +281,42 @@ public class App {
         m.arithm(size, "<=", n).post();
         
     }
-
-
+    
     public static Solution solvePark(Model model, Park park) {
+    	return solvePark(model, park, false);
+    }
+
+    public static Solution solvePark(Model model, Park park, Boolean oppositeGCC) {
     	List<Animal> csp_animals = park.getAnimals(); 
         List<Cage> csp_cages = park.getCages();
         List<Species> csp_species = park.getSpecs();
 
-        uml2CSP(model, csp_cages, csp_animals, csp_species);
+        uml2CSP(model, csp_cages, csp_animals, csp_species, oppositeGCC);
         ocl_capacity(model, csp_cages);
         ocl_species(model, csp_cages);
         
         Solver solver = model.getSolver();
-        solver.setSearch(Search.minDomLBSearch(getDecisionVariables()));
+        solver.setSearch(Search.minDomLBSearch(getDecisionVariables2()));
+        solver.setSearch(Search.inputOrderLBSearch(getDecisionVariables1()));
         Solution solution = solver.findSolution();
         return solution;
+    }
+    
+    public static IntVar[] getDecisionVariables1() {
+    	List<IntVar[]> varsC2A = cage2animal_LinkVars;
+    	List<IntVar> res = new ArrayList<IntVar>();
+    	for (IntVar[] vars : varsC2A)
+    		for (IntVar var : vars)
+    			res.add(var);
+    	return res.toArray(IntVar[]::new);
+    }
+    
+    public static IntVar[] getDecisionVariables2() {
+    	List<IntVar> res = new ArrayList<IntVar>();
+    	for (IntVar[] vars : animal2cage_LinkVars)
+    		for (IntVar var : vars)
+    			res.add(var);
+    	return res.toArray(IntVar[]::new);
     }
     
     public static IntVar[] getDecisionVariables() {
