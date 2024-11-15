@@ -29,10 +29,11 @@ public class Tester {
 		test2(getFileNameTime(), 5, false);
 		test2(getFileNameTime(), 5, true);
 		//test2(getFileNameTime(), 8);
+		//test3(getFileNameTime(), 10);
 	}
 	
 	public static void test0() {
-		Park park = createPark("park", 2, new int[] {2,3}, 1, new int[] {1});
+		Park park = createPark("park", 2, new int[] {2,3}, 2, new int[] {2,2});
 		solveAndWritePark(park, "results" + File.separator + "resTest.txt", true);
 	}
 	
@@ -86,6 +87,26 @@ public class Tester {
 		for (float[] tt : times)
 			for (float t : tt)
 				totalTime += t;
+		System.out.println("Total time : " + totalTime);
+		writeToFile(fileName, "\nTotal time : " + totalTime);
+	}
+	
+	public static void test3(String fileName, int n) {
+		float[] times = new float[n];
+		for (int i = 0; i < n; i ++) {
+			String occurence = "Occurence " + i;
+			System.out.println(occurence);
+			writeToFile(fileName, occurence);
+			
+			Park park = createPark("park " + i, 4, new int[] {n,n,n,n}, 4, new int[] {i + 1, i + 1, i + 1, i + 1}, fileName);
+			
+			times[i] = solveAndWritePark(park, fileName, false);
+		}
+		System.out.println(Arrays.toString(times));
+		writeToFile(fileName, Arrays.toString(times).replace("], ", "],\n"));
+		float totalTime = (float) 0.;
+		for (float t : times)
+			totalTime += t;
 		System.out.println("Total time : " + totalTime);
 		writeToFile(fileName, "\nTotal time : " + totalTime);
 	}

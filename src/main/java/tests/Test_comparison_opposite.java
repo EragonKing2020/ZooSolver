@@ -10,6 +10,7 @@ import org.chocosolver.util.tools.ArrayUtils;
 public class Test_comparison_opposite {
 
 	public static void main(String[] args) {
+		/*
 		// Many to Many
 		// ELEMENT
 		solveModel(false, false, false, new int[][] {{1,1},{-1,1}}); // No strategy
@@ -19,11 +20,27 @@ public class Test_comparison_opposite {
 		// Setting a strategy only on a and b is not helping => the aapos and bbpos variables are not instanciated and the constraint is not used !
 		
 		// GCC
-		solveModel(false, false, true, new int[][] {{1,1},{-1,1}}); // No strategy
+		solveModel(false, false, true, new int[][] {{0,1},{-1,0}}); // No strategy
 		// No problem with this one.
-		solveModel(true, false, true, new int[][] {{1,1},{-1,1}}); // Search on a and b, Lower bound
-		solveModel(true, true, true, new int[][] {{1,1},{-1,1}}); // Search on a and b, Upper bound
+		solveModel(true, false, true, new int[][] {{0,1},{-1,0}}); // Search on a and b, Lower bound
+		solveModel(true, true, true, new int[][] {{0,1},{-1,0}}); // Search on a and b, Upper bound
 		// With a strategy this is good too.
+		*/
+		
+		Model model = new Model();
+		IntVar[][] a = model.intVarMatrix("a", 2, 3, 0, 4);
+		IntVar[][] b = model.intVarMatrix("b", 3, 2, 0, 1);
+		IntVar[][] aocc = model.intVarMatrix("aocc", 2, 3, 0, 5);
+		IntVar[][] bocc = model.intVarMatrix("bocc", 3, 2, 0, 5);
+		oppositeCSP2(model, a, b, aocc, bocc);
+		/*IntVar[][] aapos = model.intVarMatrix("aapos", 2, 3, 0, 5);
+		IntVar[][] bbpos = model.intVarMatrix("bbpos", 2, 3, 0, 5);
+		oppositeCSP(model, a, b, aapos, bbpos);*/
+		//oppositeCSP1(model, a, ArrayUtils.flatten(b));
+		Solver solver = model.getSolver();
+		solver.setSearch(Search.minDomLBSearch(ArrayUtils.flatten(a)));
+		solver.findSolution();
+		System.out.println(model);
 		
 		
 		// For a one to many, we can use element, but in a more concise way :
@@ -40,12 +57,23 @@ public class Test_comparison_opposite {
             for(int j=0;j<b.length;j++){
                 IntVar[] aa = a[i];
                 IntVar[] bb = b[j];
+                System.out.println(aa.length + "-" + bb.length);
                 IntVar aaid = m.intVar(i); //I think consts use singletons, so doing it messy
                 IntVar bbid = m.intVar(j);
                 m.ifOnlyIf(m.element(bbid,aa,bbpos[i][j],0),m.element(aaid,bb,aapos[i][j],0)); // Question : Fonctionne seulement car lien unique animal -> cage ?
             }
         }
     }
+	
+	static void oppositeCSP1(Model m, IntVar[][] a, IntVar[] b) {
+		for (int j = 0; j < b.length; j ++) {
+			IntVar index = m.intVar(0, a.length * a[0].length);
+			m.arithm(index, ">=", b[j], "*", a[0].length).post();
+			IntVar bPlus = b[j].add(1).intVar();
+			m.arithm(index, "<", bPlus, "*", a[0].length).post();
+			m.element(m.intVar(j), ArrayUtils.flatten(a), index, 0).post();
+		}
+	}
 	
 	static void oppositeCSP2(Model m, IntVar[][] a, IntVar[][] b, IntVar[][] aocc, IntVar[][] bocc){
         int al = a.length;
@@ -61,7 +89,8 @@ public class Test_comparison_opposite {
             m.globalCardinality(b[i],bvals,bocc[i],false).post();
 
         for(int i=0;i<al;i++) for(int j=0;j<bl;j++)
-            m.ifOnlyIf(m.arithm(aocc[i][j], ">",0), m.arithm(bocc[j][i], ">",0));
+        	m.arithm(aocc[i][j], "=", bocc[j][i]).post();
+            //m.ifOnlyIf(m.arithm(aocc[i][j], ">",0), m.arithm(bocc[j][i], ">",0));
     }
 	
 	static void solveModel(Boolean hasSearch, Boolean searchUB, Boolean oppGcc, int[][] initVal) {

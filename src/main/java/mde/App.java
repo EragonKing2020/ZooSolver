@@ -15,6 +15,7 @@ import java.util.stream.IntStream;
 
 import org.chocosolver.solver.*;
 import org.chocosolver.solver.constraints.Constraint;
+import org.chocosolver.solver.exception.ContradictionException;
 import org.chocosolver.solver.search.strategy.Search;
 import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.util.tools.ArrayUtils;
@@ -108,6 +109,17 @@ public class App {
         }
 
     }
+    
+    static void oppositeCSPELE(Model m, IntVar[][] a, IntVar[] b) {
+		for (int j = 0; j < b.length; j ++) {
+			IntVar index = m.intVar(0, a.length * a[0].length);
+			m.arithm(index, ">=", b[j], "*", a[0].length).post();
+			IntVar bPlus = b[j].add(1).intVar();
+			m.arithm(index, "<", bPlus, "*", a[0].length).post();
+			m.element(m.intVar(j + 1), ArrayUtils.flatten(a), index, 0).post();
+		}
+		m.allDifferentExcept0(ArrayUtils.flatten(a)).post();
+	}
     
     static void oppositeCSPGCC(Model m, IntVar[][] a, IntVar[][] b){
         int al = a.length;
@@ -208,7 +220,7 @@ public class App {
             oppositeCSP(m,
                 cage2animal_LinkVars.toArray(new IntVar[cage2animal_LinkVars.size()][]), 
                 animal2cage_LinkVars.toArray(new IntVar[animal2cage_LinkVars.size()][]), oppositeGCC);
-
+        
 
         ec = animals.get(0).eClass().getEReferences().getFirst();
         List<IntVar[]> animal2species_LinkVars = new ArrayList<>();
@@ -296,9 +308,27 @@ public class App {
         ocl_species(model, csp_cages);
         
         Solver solver = model.getSolver();
-        solver.setSearch(Search.minDomLBSearch(getDecisionVariables2()));
+        //solver.setSearch(Search.minDomLBSearch(getDecisionVariables2()));
         solver.setSearch(Search.inputOrderLBSearch(getDecisionVariables1()));
         Solution solution = solver.findSolution();
+        System.out.println("Animal");
+        for (IntVar[] varAnimal : animal2cage_LinkVars) {
+        	System.out.println(varAnimal[0]);
+        }
+        System.out.println("Cage");
+        for (IntVar[] varsCage : cage2animal_LinkVars) {
+        	System.out.println(varsCage);
+        	for (IntVar var : varsCage) {
+        		System.out.println(var);
+        		if (!var.isInstantiated())
+					try {
+						var.instantiateTo(0, null);
+		        		System.out.println(var);
+					} catch (ContradictionException e) {
+						e.printStackTrace();
+					}
+        	}
+        }
         return solution;
     }
     
