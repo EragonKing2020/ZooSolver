@@ -1,0 +1,777 @@
+Occurence 0, 1-1,oppositeGCCpark 0 - capacity cages : [8, 8], nbAnimals by species : [1, 1]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+Time : 0.0216453
+Occurence 1, 2-1,oppositeGCCpark 1 - capacity cages : [8, 8], nbAnimals by species : [2, 1]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.011159199
+Occurence 2, 1-2,oppositeGCCpark 2 - capacity cages : [8, 8], nbAnimals by species : [1, 2]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+Time : 0.008578
+Occurence 3, 3-1,oppositeGCCpark 3 - capacity cages : [8, 8], nbAnimals by species : [3, 1]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.009962001
+Occurence 4, 2-2,oppositeGCCpark 4 - capacity cages : [8, 8], nbAnimals by species : [2, 2]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.0092105
+Occurence 5, 1-3,oppositeGCCpark 5 - capacity cages : [8, 8], nbAnimals by species : [1, 3]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+Time : 0.0106427
+Occurence 6, 4-1,oppositeGCCpark 6 - capacity cages : [8, 8], nbAnimals by species : [4, 1]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+Time : 0.011400601
+Occurence 7, 3-2,oppositeGCCpark 7 - capacity cages : [8, 8], nbAnimals by species : [3, 2]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.0090745
+Occurence 8, 2-3,oppositeGCCpark 8 - capacity cages : [8, 8], nbAnimals by species : [2, 3]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.0105171
+Occurence 9, 1-4,oppositeGCCpark 9 - capacity cages : [8, 8], nbAnimals by species : [1, 4]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+Time : 0.010095
+Occurence 10, 5-1,oppositeGCCpark 10 - capacity cages : [8, 8], nbAnimals by species : [5, 1]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+Time : 0.0088524
+Occurence 11, 4-2,oppositeGCCpark 11 - capacity cages : [8, 8], nbAnimals by species : [4, 2]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+Time : 0.0106935
+Occurence 12, 3-3,oppositeGCCpark 12 - capacity cages : [8, 8], nbAnimals by species : [3, 3]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.009183699
+Occurence 13, 2-4,oppositeGCCpark 13 - capacity cages : [8, 8], nbAnimals by species : [2, 4]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.0098158
+Occurence 14, 1-5,oppositeGCCpark 14 - capacity cages : [8, 8], nbAnimals by species : [1, 5]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+Time : 0.013104601
+Occurence 15, 6-1,oppositeGCCpark 15 - capacity cages : [8, 8], nbAnimals by species : [6, 1]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+Time : 0.008124
+Occurence 16, 5-2,oppositeGCCpark 16 - capacity cages : [8, 8], nbAnimals by species : [5, 2]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+Time : 0.007932101
+Occurence 17, 4-3,oppositeGCCpark 17 - capacity cages : [8, 8], nbAnimals by species : [4, 3]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+Time : 0.0116229
+Occurence 18, 3-4,oppositeGCCpark 18 - capacity cages : [8, 8], nbAnimals by species : [3, 4]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.008188
+Occurence 19, 2-5,oppositeGCCpark 19 - capacity cages : [8, 8], nbAnimals by species : [2, 5]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.0091526
+Occurence 20, 1-6,oppositeGCCpark 20 - capacity cages : [8, 8], nbAnimals by species : [1, 6]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+Time : 0.007431199
+Occurence 21, 7-1,oppositeGCCpark 21 - capacity cages : [8, 8], nbAnimals by species : [7, 1]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+Time : 0.0106742
+Occurence 22, 6-2,oppositeGCCpark 22 - capacity cages : [8, 8], nbAnimals by species : [6, 2]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+Time : 0.011776
+Occurence 23, 5-3,oppositeGCCpark 23 - capacity cages : [8, 8], nbAnimals by species : [5, 3]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+Time : 0.0106044
+Occurence 24, 4-4,oppositeGCCpark 24 - capacity cages : [8, 8], nbAnimals by species : [4, 4]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+Time : 0.010865001
+Occurence 25, 3-5,oppositeGCCpark 25 - capacity cages : [8, 8], nbAnimals by species : [3, 5]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.0070337
+Occurence 26, 2-6,oppositeGCCpark 26 - capacity cages : [8, 8], nbAnimals by species : [2, 6]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.0090658
+Occurence 27, 1-7,oppositeGCCpark 27 - capacity cages : [8, 8], nbAnimals by species : [1, 7]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+Time : 0.009305499
+Occurence 28, 8-1,oppositeGCCpark 28 - capacity cages : [8, 8], nbAnimals by species : [8, 1]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+Time : 0.0111993
+Occurence 29, 7-2,oppositeGCCpark 29 - capacity cages : [8, 8], nbAnimals by species : [7, 2]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+Time : 0.0103805
+Occurence 30, 6-3,oppositeGCCpark 30 - capacity cages : [8, 8], nbAnimals by species : [6, 3]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+Time : 0.008933301
+Occurence 31, 5-4,oppositeGCCpark 31 - capacity cages : [8, 8], nbAnimals by species : [5, 4]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+Time : 0.0109753
+Occurence 32, 4-5,oppositeGCCpark 32 - capacity cages : [8, 8], nbAnimals by species : [4, 5]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+Time : 0.008902399
+Occurence 33, 3-6,oppositeGCCpark 33 - capacity cages : [8, 8], nbAnimals by species : [3, 6]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.008707
+Occurence 34, 2-7,oppositeGCCpark 34 - capacity cages : [8, 8], nbAnimals by species : [2, 7]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.007444501
+Occurence 35, 1-8,oppositeGCCpark 35 - capacity cages : [8, 8], nbAnimals by species : [1, 8]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+Time : 0.011238301
+Occurence 36, 8-2,oppositeGCCpark 36 - capacity cages : [8, 8], nbAnimals by species : [8, 2]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+Time : 0.0171772
+Occurence 37, 7-3,oppositeGCCpark 37 - capacity cages : [8, 8], nbAnimals by species : [7, 3]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+Time : 0.0099609
+Occurence 38, 6-4,oppositeGCCpark 38 - capacity cages : [8, 8], nbAnimals by species : [6, 4]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+Time : 0.0111607
+Occurence 39, 5-5,oppositeGCCpark 39 - capacity cages : [8, 8], nbAnimals by species : [5, 5]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+Time : 0.0094515
+Occurence 40, 4-6,oppositeGCCpark 40 - capacity cages : [8, 8], nbAnimals by species : [4, 6]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+Time : 0.009664401
+Occurence 41, 3-7,oppositeGCCpark 41 - capacity cages : [8, 8], nbAnimals by species : [3, 7]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.0114235
+Occurence 42, 2-8,oppositeGCCpark 42 - capacity cages : [8, 8], nbAnimals by species : [2, 8]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+Time : 0.008489
+Occurence 43, 8-3,oppositeGCCpark 43 - capacity cages : [8, 8], nbAnimals by species : [8, 3]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+Time : 0.010988399
+Occurence 44, 7-4,oppositeGCCpark 44 - capacity cages : [8, 8], nbAnimals by species : [7, 4]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+Time : 0.009954901
+Occurence 45, 6-5,oppositeGCCpark 45 - capacity cages : [8, 8], nbAnimals by species : [6, 5]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+Time : 0.0098693
+Occurence 46, 5-6,oppositeGCCpark 46 - capacity cages : [8, 8], nbAnimals by species : [5, 6]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+Time : 0.0083023
+Occurence 47, 4-7,oppositeGCCpark 47 - capacity cages : [8, 8], nbAnimals by species : [4, 7]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+Time : 0.009529501
+Occurence 48, 3-8,oppositeGCCpark 48 - capacity cages : [8, 8], nbAnimals by species : [3, 8]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+Time : 0.012064201
+Occurence 49, 8-4,oppositeGCCpark 49 - capacity cages : [8, 8], nbAnimals by species : [8, 4]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+Time : 0.0184064
+Occurence 50, 7-5,oppositeGCCpark 50 - capacity cages : [8, 8], nbAnimals by species : [7, 5]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+Time : 0.0165082
+Occurence 51, 6-6,oppositeGCCpark 51 - capacity cages : [8, 8], nbAnimals by species : [6, 6]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+Time : 0.011089201
+Occurence 52, 5-7,oppositeGCCpark 52 - capacity cages : [8, 8], nbAnimals by species : [5, 7]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+Time : 0.013215099
+Occurence 53, 4-8,oppositeGCCpark 53 - capacity cages : [8, 8], nbAnimals by species : [4, 8]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+Time : 0.014398399
+Occurence 54, 8-5,oppositeGCCpark 54 - capacity cages : [8, 8], nbAnimals by species : [8, 5]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+Time : 0.0119294
+Occurence 55, 7-6,oppositeGCCpark 55 - capacity cages : [8, 8], nbAnimals by species : [7, 6]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+Time : 0.0153543
+Occurence 56, 6-7,oppositeGCCpark 56 - capacity cages : [8, 8], nbAnimals by species : [6, 7]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+Time : 0.0131724
+Occurence 57, 5-8,oppositeGCCpark 57 - capacity cages : [8, 8], nbAnimals by species : [5, 8]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+Time : 0.011671501
+Occurence 58, 8-6,oppositeGCCpark 58 - capacity cages : [8, 8], nbAnimals by species : [8, 6]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+Time : 0.011235699
+Occurence 59, 7-7,oppositeGCCpark 59 - capacity cages : [8, 8], nbAnimals by species : [7, 7]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+Time : 0.0129827
+Occurence 60, 6-8,oppositeGCCpark 60 - capacity cages : [8, 8], nbAnimals by species : [6, 8]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+Time : 0.012736101
+Occurence 61, 8-7,oppositeGCCpark 61 - capacity cages : [8, 8], nbAnimals by species : [8, 7]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+Time : 0.0146539
+Occurence 62, 7-8,oppositeGCCpark 62 - capacity cages : [8, 8], nbAnimals by species : [7, 8]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+Time : 0.011239301
+Occurence 63, 8-8,oppositeGCCpark 63 - capacity cages : [8, 8], nbAnimals by species : [8, 8]
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+Time : 0.0210451
+[[0.022144, 0.009422899, 0.0111164, 0.010722099, 0.013614001, 0.0079259, 0.009775199, 0.0120858],
+[0.0115636, 0.0097261, 0.0110358, 0.0102595, 0.0099491, 0.0094671, 0.0078775, 0.0090433],
+[0.010352401, 0.009897601, 0.0099765, 0.008672299, 0.0074481, 0.009350599, 0.0119097, 0.012624001],
+[0.012051801, 0.0113363, 0.0120488, 0.011312701, 0.0096109, 0.0101629, 0.009985101, 0.0148331],
+[0.0091873, 0.008547501, 0.0110518, 0.0115095, 0.0099837, 0.008666499, 0.0138237, 0.012084701],
+[0.0086439, 0.012248101, 0.009600801, 0.011613001, 0.010475, 0.011478501, 0.013773, 0.013173201],
+[0.0113197, 0.0107537, 0.0103279, 0.0106945, 0.016956, 0.0157624, 0.013336, 0.011617901],
+[0.0116466, 0.0177868, 0.0118742, 0.0189304, 0.0123454, 0.0117332, 0.01523, 0.0215563]]
+Total time : 0.7450322

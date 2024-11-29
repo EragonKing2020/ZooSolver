@@ -24,16 +24,16 @@ import zoo.Species;
 public class Tester {
 
 	public static void main(String[] args) {
-		//test0();
+		test0();
 		//test1(getFileNameTime(), true);
-		test2(getFileNameTime(), 5, false);
-		test2(getFileNameTime(), 5, true);
+		//test2(getFileNameTime(), 9, true);
+		//test2(getFileNameTime(), 8, false);
 		//test2(getFileNameTime(), 8);
-		//test3(getFileNameTime(), 10);
+		//test3(getFileNameTime(), 9);
 	}
 	
 	public static void test0() {
-		Park park = createPark("park", 2, new int[] {2,3}, 2, new int[] {2,2});
+		Park park = createPark("park", 2, new int[] {10,10}, 2, new int[] {10,9});
 		solveAndWritePark(park, "results" + File.separator + "resTest.txt", true);
 	}
 	
@@ -100,7 +100,7 @@ public class Tester {
 			
 			Park park = createPark("park " + i, 4, new int[] {n,n,n,n}, 4, new int[] {i + 1, i + 1, i + 1, i + 1}, fileName);
 			
-			times[i] = solveAndWritePark(park, fileName, false);
+			times[i] = solveAndWritePark(park, fileName, true);
 		}
 		System.out.println(Arrays.toString(times));
 		writeToFile(fileName, Arrays.toString(times).replace("], ", "],\n"));

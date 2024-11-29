@@ -1,0 +1,189 @@
+Zoo Config
+Cage 0AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+AnimalS0 8 : Specie 0
+AnimalS0 9 : Specie 0
+Time : 0.0313994
+Zoo Config
+Cage 0Cage 1Time : 0.0655366
+Zoo Config
+Cage 0Cage 1Time : 0.0624263
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+AnimalS1 8 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+AnimalS0 8 : Specie 0
+Time : 0.0646012
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+AnimalS1 8 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+AnimalS0 8 : Specie 0
+Time : 0.0542444
+Zoo Config
+Cage 0Cage 1Time : 0.0669372
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+AnimalS1 8 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+AnimalS0 8 : Specie 0
+Time : 0.0627901
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+AnimalS1 8 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+AnimalS0 8 : Specie 0
+Time : 0.067194
+Zoo Config
+Cage 0Cage 1Time : 0.0630817
+Zoo Config
+Cage 0Cage 1Time : 0.0616376
+Zoo Config
+Cage 0Cage 1Time : 0.0523971
+Zoo Config
+Cage 0Cage 1Time : 0.0618982
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+AnimalS1 8 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+AnimalS0 8 : Specie 0
+AnimalS0 9 : Specie 0
+Time : 0.0637553
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+AnimalS1 8 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+AnimalS0 8 : Specie 0
+AnimalS0 9 : Specie 0
+Time : 0.0597256
+Zoo Config
+Cage 0Cage 1Time : 0.0382526
+Zoo Config
+Cage 0Cage 1Time : 0.0421323
+Zoo Config
+Cage 0Cage 1Time : 0.0425727
+Zoo Config
+Cage 0Cage 1Time : 0.0403731
+Zoo Config
+Cage 0Cage 1Time : 0.0432598
+Zoo Config
+Cage 0Cage 1Time : 0.072260894
+Zoo Config
+Cage 0Cage 1Time : 0.0596549
+Zoo Config
+Cage 0Cage 1Time : 0.0637468
+Zoo Config
+Cage 0Cage 1Time : 0.0498686
+Zoo Config
+Cage 0AnimalS1 0 : Specie 1
+AnimalS1 1 : Specie 1
+AnimalS1 2 : Specie 1
+AnimalS1 3 : Specie 1
+AnimalS1 4 : Specie 1
+AnimalS1 5 : Specie 1
+AnimalS1 6 : Specie 1
+AnimalS1 7 : Specie 1
+AnimalS1 8 : Specie 1
+Cage 1AnimalS0 0 : Specie 0
+AnimalS0 1 : Specie 0
+AnimalS0 2 : Specie 0
+AnimalS0 3 : Specie 0
+AnimalS0 4 : Specie 0
+AnimalS0 5 : Specie 0
+AnimalS0 6 : Specie 0
+AnimalS0 7 : Specie 0
+AnimalS0 8 : Specie 0
+AnimalS0 9 : Specie 0
+Time : 0.0566797
+Zoo Config
+Cage 0Cage 1Time : 0.07632

@@ -24,7 +24,7 @@ import zoo.*; //This is the model we're trying to solve the problems for, it's d
 import mde.MVIPropagator;
 
 public class App {
-    static int magic = 100;
+    //static int magic = 100;
     static List<IntVar[]> cage2animal_LinkVars; 
     static List<IntVar[]> animal2cage_LinkVars; 
     static java.util.Hashtable<EReference,IntVar[]> eRef2LinkVar = new Hashtable<>();
@@ -64,13 +64,18 @@ public class App {
 
 
     //Choco
-    static IntVar[] makeLinkVar(Model m, int maxCard, int minCard, int numberOfTargets){ //,int data)
+    static IntVar[] makeLinkVar(Model m, int maxCard, int minCard, int numberOfTargets, String name){ //,int data)
         int lb=0;
         int ub=numberOfTargets;
         if (minCard!=0) //get null pointer out of the domain // Why minCard != 0 and not minCard = maxCard ?
             ub--; //null pointer is 0 or numberOfTargets, depending on where you start counting
             // lb++; //it's one XOR the other
+        if (name != null) return m.intVarArray(name, maxCard, lb,ub);
         return m.intVarArray(maxCard, lb,ub);
+    }
+    
+    static IntVar[] makeLinkVar(Model m, int maxCard, int minCard, int numberOfTargets){
+    	return makeLinkVar(m, maxCard, minCard, numberOfTargets, null);
     }
 
     static void initLinkVar(IntVar[] linkvar, int[] data, int n){ //-1 is no data
@@ -101,8 +106,8 @@ public class App {
                 IntVar[] bb = b[j];
                 IntVar aaid = m.intVar(i); //I think consts use singletons, so doing it messy
                 IntVar bbid = m.intVar(j);
-                IntVar aapos = m.intVar(0,magic); //here's the real mess, these are kinda dangling
-                IntVar bbpos = m.intVar(0,magic); //but it doesn't matter, the copies will all have the same values and they don't really play much of a role in propagation
+                IntVar aapos = m.intVar(0,bb.length - 1); //here's the real mess, these are kinda dangling
+                IntVar bbpos = m.intVar(0,aa.length - 1); //but it doesn't matter, the copies will all have the same values and they don't really play much of a role in propagation
                 m.ifOnlyIf(m.element(bbid,aa,bbpos,0),m.element(aaid,bb,aapos,0)); // Question : Fonctionne seulement car lien unique animal -> cage ?
             }
 
@@ -124,31 +129,70 @@ public class App {
     static void oppositeCSPGCC(Model m, IntVar[][] a, IntVar[][] b){
         int al = a.length;
         int bl = b.length;
-        IntVar[][] aocc = m.intVarMatrix(al, bl, 0,magic);
-        int[] avals = new int[bl];
-        for(int i=0;i<bl;i++) avals[i]=(i);
+        
+        IntVar[][] aocc = m.intVarMatrix("aocc", al, bl + 1, 0, a[0].length); //We use bl+1 to count dummy pointer (value 0)
+        int[] avals = new int[bl + 1];
+        for(int i=0;i<bl + 1;i++) avals[i]=(i);
         for(int i=0;i<al;i++){
             m.globalCardinality(a[i],avals,aocc[i],false).post();
         }
         
-        IntVar[][] bocc = m.intVarMatrix(bl, al, 0,magic);
-        int[] bvals = new int[al];
-        for(int i=0;i<al;i++) bvals[i]=(i);
+        IntVar[][] bocc = m.intVarMatrix("bocc", bl, al + 1, 0, b[0].length);
+        int[] bvals = new int[al + 1];
+        for(int i=0;i<al + 1;i++) bvals[i]=(i);
         for(int i=0;i<bl;i++){
             m.globalCardinality(b[i],bvals,bocc[i],false).post();
         }
+       
+        bagFromOcc(m, a, aocc);
+        bagFromOcc(m, b, bocc);
 
-        for(int i=0;i<al;i++) for(int j=0;j<bl;j++){
-            m.ifOnlyIf(m.arithm(aocc[i][j], ">",0), m.arithm(bocc[j][i], ">",0));
+        for(int i=0;i<al;i++) for(int j=0;j<bl;j++){ //We use al and bl here because we don't want to count the dummies
+        	//m.ifOnlyIf(m.arithm(aocc[i][j], ">",0), m.arithm(bocc[j][i], ">",0));
+            m.arithm(aocc[i][j], "=", bocc[j][i]).post();
         }
     }
+    
+    static void bagFromOcc(Model m, IntVar[][] a, IntVar[][] aocc) {
+    	//IntVar[][] Sa = new IntVar[a.length][aocc[0].length]; //m.intVarMatrix(aocc.length, al, 1, a[0].length + 1);
+        IntVar[][] Sa = m.intVarMatrix("Sa", a.length, aocc[0].length, 0, a[0].length);
+		//IntVar[][] Ea = new IntVar[a.length][aocc[0].length]; //m.intVarMatrix(aocc.length, a.length, 0, a[0].length);
+        IntVar[][] Ea = m.intVarMatrix("Ea", a.length, aocc[0].length, -1, a[0].length-1);
+		
+        setStartAndEndBagFromOcc(m, aocc, Sa, Ea);
+        
+        constraintBagFromStartAndEnd(m, a, Sa, Ea);
+        //return new IntVar[][][] {Sa, Ea};
+	}
+	
+	static void setStartAndEndBagFromOcc(Model m, IntVar[][] aocc, IntVar[][] Sa, IntVar[][] Ea) {
+		int al = aocc.length;
+		for (int i = 0; i < al; i ++) {
+			m.arithm(Sa[i][0], "=", 0).post();
+			m.arithm(Ea[i][0], "=", aocc[i][0].add(-1).intVar()).post();
+        	for (int j = 1; j < Sa[0].length; j ++) {
+        		m.arithm(Sa[i][j], "=", Sa[i][j - 1].add(aocc[i][j - 1]).intVar()).post();
+        		m.arithm(Ea[i][j], "=", Ea[i][j - 1].add(aocc[i][j]).intVar()).post();
+        	}
+        }
+	}
+	
+	static void constraintBagFromStartAndEnd(Model m, IntVar[][] a, IntVar[][] Sa, IntVar[][] Ea) {
+		int al = a.length;
+		for (int i = 0; i < al; i ++)
+			for (int j = 0; j < Sa[i].length; j ++)
+				for (int k = 0; k < a[i].length; k ++) {
+					m.ifOnlyIf(m.arithm(Sa[i][j], ">", k), m.arithm(a[i][k], "<", j));
+					m.ifOnlyIf(m.arithm(Ea[i][j], "<", k), m.arithm(a[i][k], ">", j));
+				}
+	}
 
     static IntVar[] navCSP(Model m, IntVar[] source, IntVar[][] sources, int s, int ss, int lb, int ub, IntVar dummy){
         int sss = s*ss;
         IntVar[] out = m.intVarArray(sss,lb,ub);
         IntVar[] dummies = new IntVar[ss]; for(int i=0;i<ss;i++) dummies[i] = dummy;//copy dummy ss times
         IntVar[] table = ArrayUtils.concat(ArrayUtils.flatten(sources),dummies); //flatten sources, dummies at the end (ub--)
-        // IntVar[] table = ArrayUtils.concat(dummies, ArrayUtils.flatten(sources)); //flatten sources, dummies at the end (lb++)
+        //IntVar[] table = ArrayUtils.concat(dummies, ArrayUtils.flatten(sources)); //flatten sources, dummies at the end (lb++)
         
         // for(int i=0;i<sss;i++) m.element(out[i], table, pointer,0);
         int k=0;
@@ -166,6 +210,7 @@ public class App {
 
     static IntVar sizeOCC(Model m, IntVar[] occVar, int maxCard, int dummy){
         IntVar darc = occVar[dummy];
+        System.out.println(darc);
         return darc.mul(-1).add(maxCard).intVar();
     }
 
@@ -199,7 +244,7 @@ public class App {
         animal2cage = new Hashtable<>();
         animal2species = new Hashtable<>();
         for(var c : cages){
-            IntVar[] linkVar = makeLinkVar(m, ec0.getUpperBound(), ec0.getLowerBound(), animals.size());
+            IntVar[] linkVar = makeLinkVar(m, ec0.getUpperBound(), ec0.getLowerBound(), animals.size(), c.getName());
             cage2animal.put(c, linkVar);
             cage2animal_LinkVars.add(linkVar);
             eRef2LinkVar.put(c.eClass().getEReferences().getFirst(),linkVar);
@@ -210,7 +255,7 @@ public class App {
         System.out.println(ec.getUpperBound());
         animal2cage_LinkVars = new ArrayList<>();
         for(var a : animals){
-            IntVar[] linkVar = makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), cages.size()); 
+            IntVar[] linkVar = makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), cages.size(), a.getName()); 
             animal2cage.put(a,linkVar);
             animal2cage_LinkVars.add(linkVar);
         }
@@ -228,7 +273,7 @@ public class App {
         System.out.println(ec.getUpperBound());
         System.out.println(species.size());
         for(var a : animals){
-            IntVar[] out = makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), species.size());
+        	IntVar[] out = makeLinkVar(m, ec.getUpperBound(), ec.getLowerBound(), species.size(), "Specie " + a.getName());
             animal2species_LinkVars.add(out);
             //init data
             m.arithm(out[0],"=",species.indexOf( a.getSpec())).post();
@@ -248,32 +293,36 @@ public class App {
     //OCL Constraint 1.a: LinkVar.size() =< n
     static void capacity(Model m, IntVar[] source, int n){
         //size
-        IntVar size = sizeLINK(m, source, source.length, cA);
+    	IntVar size = sizeLINK(m, source, source.length, cA); // ub--
+    	//IntVar size = sizeLINK(m, source, source.length, 0); // lb++
         //arithm
+    	System.out.println("size : " + size);
         m.arithm(size, "<=", n).post();
     }
 
     // //OCL Constraint 2: cage.animals.species.asSet.size() =< 1
     static void ocl_species(Model m, List<Cage> cages){
-        IntVar dS = m.intVar(cS);
+        IntVar dS = m.intVar(cS); // ub--
+        //IntVar dS = m.intVar(0); // lb++
         for(var c:cages){
-            IntVar[] local_animal2species = navCSP(m, cage2animal.get(c), animals2species_table, 10, 1, 0, magic, dS);
-            asSetLessThanN(m, local_animal2species, 10, 1, 0, cS, cS);
+            IntVar[] local_animal2species = navCSP(m, cage2animal.get(c), animals2species_table, 10, 1, 0, cS, dS);
+            asSetLessThanN(m, local_animal2species, 1, 0, cS, cS); // ub--
+            //asSetLessThanN(m, local_animal2species, 1, 0, cS, 0); //lb++
         }
     }
 
 
     // //OCL Constraint 2.a: LinkVar.asSet.size() =< n
-    static void asSetLessThanN(Model m, IntVar[] source, int s, int n, int lb, int ub, int dummy){ //the complicated one
+    static void asSetLessThanN(Model m, IntVar[] source, int n, int lb, int ub, int dummy){ //the complicated one
         //speciesLINK gcc speciesOCC
-        IntVar[] speciesOCC = m.intVarArray("specOCC",cS+1, 0, magic);
+        IntVar[] speciesOCC = m.intVarArray("specOCC",cS+1, 0, source.length);
         int[] gccIDs = IntStream.range(0, cS+1).toArray();
         m.globalCardinality(source, gccIDs, speciesOCC, true).post();;
         
         //speciesOCC includes asSetOCC
-        IntVar[] asSetOCC = m.intVarArray("asSetOCC",cS+1, 0,magic); //domain 0..1 except for asSetOCC[dummy]
+        IntVar[] asSetOCC = m.intVarArray("asSetOCC", cS+1, 0, cS); //domain 0..1 except for asSetOCC[dummy]
         m.sum(asSetOCC,"=",cS).post();
-        for(int i=0;i<cS;i++) {
+        for(int i=0;i<cS;i++) { //Shift between [0,cs-1] (ub--) and [1,cs] (lb++) depending on if dummy is at the beginning or at the end
             m.member(asSetOCC[i], 0,1).post();
             // try {
             //     asSetOCC[i].updateBounds(0, 1, null);
@@ -283,12 +332,15 @@ public class App {
             l2r.post();
             r2l.post();
         }
-        Constraint dm = new Constraint("r2l", new MVIPropagator(asSetOCC[cS],speciesOCC[cS]));
+        Constraint dm = new Constraint("r2l", new MVIPropagator(asSetOCC[cS],speciesOCC[cS])); //(ub--) case
+        //Constraint dm = new Constraint("r2l", new MVIPropagator(asSetOCC[0],speciesOCC[0])); //(lb++) case
         dm.post();
 
         //asSetOCC size
-        IntVar size = sizeOCC(m, asSetOCC, cS, cS);
-
+        IntVar size = sizeOCC(m, asSetOCC, cS, cS); // ub--
+        //IntVar size = sizeOCC(m, asSetOCC, cS, 0); // lb++
+        System.out.println("s : " + size);
+        System.out.println(Arrays.deepToString(source));
         //size less than n
         m.arithm(size, "<=", n).post();
         
@@ -308,9 +360,10 @@ public class App {
         ocl_species(model, csp_cages);
         
         Solver solver = model.getSolver();
-        //solver.setSearch(Search.minDomLBSearch(getDecisionVariables2()));
-        solver.setSearch(Search.inputOrderLBSearch(getDecisionVariables1()));
+        if (oppositeGCC) solver.setSearch(Search.minDomUBSearch(getDecisionVariables2()));
+        else solver.setSearch(Search.minDomLBSearch(getDecisionVariables()));
         Solution solution = solver.findSolution();
+        if (solution == null) System.err.println("Error during resolution !!!!!!");
         System.out.println("Animal");
         for (IntVar[] varAnimal : animal2cage_LinkVars) {
         	System.out.println(varAnimal[0]);
@@ -320,13 +373,6 @@ public class App {
         	System.out.println(varsCage);
         	for (IntVar var : varsCage) {
         		System.out.println(var);
-        		if (!var.isInstantiated())
-					try {
-						var.instantiateTo(0, null);
-		        		System.out.println(var);
-					} catch (ContradictionException e) {
-						e.printStackTrace();
-					}
         	}
         }
         return solution;
